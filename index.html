@@ -585,6 +585,15 @@
     return;
   }
 
+  // ====== Mobile: autoplay loop (mobile decoders can't keep up with scrub) ======
+  if (isMobile) {
+    video.loop = true;
+    video.autoplay = true;
+    video.muted = true;
+    video.play().catch(()=>{});
+    return;
+  }
+
   // ====== Desktop scrub: scroll controls currentTime ======
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
