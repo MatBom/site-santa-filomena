@@ -25,8 +25,8 @@
     --shadow-text:0 2px 16px rgba(31,27,22,.5),0 1px 3px rgba(31,27,22,.4);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html,body{background:var(--carvao);color:var(--marfim);font-family:var(--sans);-webkit-font-smoothing:antialiased;scroll-behavior:auto}
-  body{overflow-x:hidden}
+  html{background:var(--carvao)}
+  body{color:var(--marfim);font-family:var(--sans);-webkit-font-smoothing:antialiased;scroll-behavior:auto;overflow-x:hidden;background:transparent}
 
   /* ===== VIDEO BACKGROUND ===== */
   .bg-video{
@@ -36,8 +36,8 @@
   .bg-overlay{
     position:fixed;inset:0;z-index:-1;pointer-events:none;
     background:
-      radial-gradient(120% 80% at 50% 30%, rgba(31,27,22,.15), rgba(31,27,22,.55) 70%),
-      linear-gradient(180deg, rgba(31,27,22,.25), rgba(31,27,22,.55));
+      radial-gradient(120% 80% at 50% 30%, rgba(31,27,22,0), rgba(31,27,22,.28) 70%),
+      linear-gradient(180deg, rgba(31,27,22,.05), rgba(31,27,22,.32));
   }
 
   /* ===== PRELOADER ===== */

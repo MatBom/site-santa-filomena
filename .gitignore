@@ -5,3 +5,13 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+
+# Playwright validation artifacts
+check-video.mjs
+scroll-frames.mjs
+raw-video.mjs
+check-video.png
+frame-*.png
+raw-video-*.png
+package.json
+package-lock.json
