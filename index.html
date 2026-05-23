@@ -25,8 +25,8 @@
     --shadow-text:0 2px 16px rgba(31,27,22,.5),0 1px 3px rgba(31,27,22,.4);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{background:var(--carvao)}
-  body{color:var(--marfim);font-family:var(--sans);-webkit-font-smoothing:antialiased;scroll-behavior:auto;overflow-x:hidden;background:transparent}
+  html{background:var(--carvao);width:100%;max-width:100vw;overflow-x:hidden;scroll-snap-type:y proximity}
+  body{color:var(--marfim);font-family:var(--sans);-webkit-font-smoothing:antialiased;scroll-behavior:auto;overflow-x:hidden;background:transparent;width:100%;max-width:100vw}
 
   /* ===== VIDEO BACKGROUND =====
      Swap dinâmico por viewport: mobile usa portrait (720x1280), desktop usa
@@ -66,6 +66,7 @@
   /* ===== NAV ===== */
   .nav{
     position:fixed;top:0;left:0;right:0;z-index:50;
+    width:100%;box-sizing:border-box;
     display:flex;align-items:center;justify-content:space-between;
     padding:22px 40px;
     color:var(--marfim);
@@ -102,6 +103,7 @@
     padding:14vh 40px;
     display:flex;flex-direction:column;justify-content:center;
     position:relative;
+    scroll-snap-align:start;scroll-snap-stop:normal;
   }
   .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease, transform 1s ease}
   .reveal.in{opacity:1;transform:translateY(0)}
@@ -221,9 +223,9 @@
     color:var(--marfim);text-shadow:var(--shadow-text);max-width:10ch;
   }
   .visite h2 em{font-style:italic;font-weight:400;color:var(--dourado)}
-  .info{margin-top:48px;display:grid;grid-template-columns:140px 1fr;gap:14px 24px;align-items:baseline}
+  .info{margin-top:48px;display:grid;grid-template-columns:140px minmax(0,1fr);gap:14px 24px;align-items:baseline}
   .info dt{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dourado);padding-top:6px}
-  .info dd{font-family:var(--sans);font-size:16px;line-height:1.55;color:var(--marfim);text-shadow:var(--shadow-text)}
+  .info dd{font-family:var(--sans);font-size:16px;line-height:1.55;color:var(--marfim);text-shadow:var(--shadow-text);overflow-wrap:break-word;word-break:break-word;min-width:0}
   .info dd em{font-style:italic;color:var(--dourado);font-family:var(--serif);font-size:18px}
   .info dd a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(217,192,136,.35);padding-bottom:1px;transition:border-color .25s}
   .info dd a:hover{border-color:var(--dourado)}
@@ -302,37 +304,24 @@
   }
   @media (max-width: 640px){
     .cat-grid{grid-template-columns:1fr}
-    .info{grid-template-columns:100px 1fr}
+    .info{grid-template-columns:100px minmax(0,1fr)}
     .foot-grid{grid-template-columns:1fr;gap:40px}
     .foot-bottom{flex-direction:column;gap:12px;text-align:center}
+    .whatsapp-card{padding:32px 24px}
+    .whatsapp-card .desc{max-width:100%}
   }
-
-  /* mobile: replace fixed-bg scrub with hero-only loop */
-  @media (max-width: 768px){
-    .bg-stage{position:absolute;height:100vh;top:0}
-    .bg-overlay{position:absolute;height:100vh;top:0}
-    main > section:not(:first-of-type){background:var(--marfim);color:var(--carvao)}
-    main > section:not(:first-of-type) h2,
-    main > section:not(:first-of-type) h2 em,
-    main > section:not(:first-of-type) p,
-    main > section:not(:first-of-type) .sig{color:var(--carvao);text-shadow:none}
-    main > section:not(:first-of-type) h2 em{color:var(--carmim)}
-    main > section:not(:first-of-type) .label,
-    main > section:not(:first-of-type) .sig{color:var(--carmim)}
-    .manifesto .sig::before{background:var(--carmim)}
-    .categories .card{background:#fff;border:1px solid rgba(31,27,22,.1)}
-    .visite{background:var(--marfim-2)}
-    .visite h2, .visite h2 em{color:var(--carvao)}
-    .visite h2 em{color:var(--carmim)}
-    .info dt{color:var(--carmim)}
-    .info dd{color:var(--carvao);text-shadow:none}
-    .info dd em{color:var(--carmim)}
+  @media (max-width: 480px){
+    section{padding:14vh 18px}
+    .nav{padding:18px 18px}
+    .nav.solid{padding:12px 18px}
+    footer{padding:64px 18px 28px}
   }
 
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1;transform:none;transition:none}
     .scroll-ind .line{animation:none;transform:scaleY(.8)}
     .preload .dots span{animation:none}
+    html{scroll-snap-type:none}
   }
 </style>
 </head>
@@ -587,14 +576,6 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // ====== Mobile: loop video in hero, no scrub ======
-  if (isMobile) {
-    video.loop = true;
-    video.autoplay = true;
-    video.play().catch(()=>{});
-    return;
-  }
 
   // ====== Reduced motion: hold on last frame, no scrub ======
   if (reduceMotion) {
