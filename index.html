@@ -28,16 +28,27 @@
   html{background:var(--carvao)}
   body{color:var(--marfim);font-family:var(--sans);-webkit-font-smoothing:antialiased;scroll-behavior:auto;overflow-x:hidden;background:transparent}
 
-  /* ===== VIDEO BACKGROUND ===== */
+  /* ===== VIDEO BACKGROUND =====
+     Vídeo 720x1280 (portrait). Em widescreen mostramos a versão sharp centralizada
+     com object-fit:contain (sem corte) + uma duplicata cover+blur preenchendo as
+     laterais. */
+  .bg-stage{position:fixed;inset:0;z-index:-2;background:#0a0807;overflow:hidden}
   .bg-video{
-    position:fixed;inset:0;width:100vw;height:100vh;
-    object-fit:cover;z-index:-2;background:#0a0807;
+    position:absolute;inset:0;width:100%;height:100%;
+  }
+  .bg-video.blur{
+    object-fit:cover;
+    filter:blur(48px) brightness(.55) saturate(1.1);
+    transform:scale(1.15);
+  }
+  .bg-video.sharp{
+    object-fit:contain;
   }
   .bg-overlay{
     position:fixed;inset:0;z-index:-1;pointer-events:none;
     background:
-      radial-gradient(120% 80% at 50% 30%, rgba(31,27,22,0), rgba(31,27,22,.28) 70%),
-      linear-gradient(180deg, rgba(31,27,22,.05), rgba(31,27,22,.32));
+      radial-gradient(120% 80% at 50% 30%, rgba(31,27,22,0), rgba(31,27,22,.25) 70%),
+      linear-gradient(180deg, rgba(31,27,22,.05), rgba(31,27,22,.30));
   }
 
   /* ===== PRELOADER ===== */
@@ -343,7 +354,10 @@
 </div>
 
 <!-- ========= VIDEO BACKGROUND ========= -->
-<video class="bg-video" id="bgVideo" src="assets/flora-bloom.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+<div class="bg-stage" aria-hidden="true">
+  <video class="bg-video blur"  id="bgVideoBlur"  src="assets/flora-bloom-scrub.mp4" muted playsinline preload="auto"></video>
+  <video class="bg-video sharp" id="bgVideo"      src="assets/flora-bloom-scrub.mp4" muted playsinline preload="auto"></video>
+</div>
 <div class="bg-overlay" aria-hidden="true"></div>
 
 <!-- ========= NAV ========= -->
@@ -528,6 +542,7 @@
 <script>
 (function(){
   const video = document.getElementById('bgVideo');
+  const videoBlur = document.getElementById('bgVideoBlur');
   const preload = document.getElementById('preload');
   const nav = document.getElementById('nav');
   const main = document.getElementById('main');
@@ -584,6 +599,11 @@
     video.loop = true;
     video.autoplay = true;
     video.play().catch(()=>{});
+    if (videoBlur) {
+      videoBlur.loop = true;
+      videoBlur.autoplay = true;
+      videoBlur.play().catch(()=>{});
+    }
     return;
   }
 
@@ -592,6 +612,11 @@
     video.addEventListener('loadedmetadata', () => {
       try { video.currentTime = video.duration - 0.1; } catch(_) {}
     });
+    if (videoBlur) {
+      videoBlur.addEventListener('loadedmetadata', () => {
+        try { videoBlur.currentTime = videoBlur.duration - 0.1; } catch(_) {}
+      });
+    }
     return;
   }
 
@@ -610,6 +635,9 @@
           const t = self.progress * video.duration;
           if (!isNaN(t) && isFinite(t)) {
             try { video.currentTime = t; } catch(_) {}
+            if (videoBlur) {
+              try { videoBlur.currentTime = t; } catch(_) {}
+            }
           }
         }
       });
@@ -624,6 +652,7 @@
 
     // Pause if user explicitly scrolls — prevents auto-play
     video.pause();
+    if (videoBlur) videoBlur.pause();
   }
 })();
 </script>
