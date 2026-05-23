@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flora Santa Filomena — Floricultura em Botafogo</title>
+<meta name="description" content="Floricultura tradicional em Botafogo, Rio de Janeiro. Buquês, casamentos, datas, luto, cestas e orquídeas. Uma flor de cada vez." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --carmim:#AF3059;
+    --dourado:#D9C088;
+    --verde:#2E4A37;
+    --bordo:#6B1F2A;
+    --marfim:#F4ECDD;
+    --marfim-2:#EBE0CC;
+    --carvao:#1F1B16;
+
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+
+    --shadow-text:0 2px 16px rgba(31,27,22,.5),0 1px 3px rgba(31,27,22,.4);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--carvao);color:var(--marfim);font-family:var(--sans);-webkit-font-smoothing:antialiased;scroll-behavior:auto}
+  body{overflow-x:hidden}
+
+  /* ===== VIDEO BACKGROUND ===== */
+  .bg-video{
+    position:fixed;inset:0;width:100vw;height:100vh;
+    object-fit:cover;z-index:-2;background:#0a0807;
+  }
+  .bg-overlay{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(120% 80% at 50% 30%, rgba(31,27,22,.15), rgba(31,27,22,.55) 70%),
+      linear-gradient(180deg, rgba(31,27,22,.25), rgba(31,27,22,.55));
+  }
+
+  /* ===== PRELOADER ===== */
+  .preload{
+    position:fixed;inset:0;z-index:100;background:var(--marfim);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;
+    transition:opacity .8s ease;
+  }
+  .preload.gone{opacity:0;pointer-events:none}
+  .preload .word{
+    font-family:var(--serif);font-weight:500;font-size:clamp(2rem,5vw,3.4rem);color:var(--carmim);
+    letter-spacing:-.01em;line-height:1;
+  }
+  .preload .word em{font-style:italic;font-weight:400}
+  .preload .dots{display:flex;gap:10px}
+  .preload .dots span{
+    width:8px;height:8px;background:var(--carmim);border-radius:50%;
+    animation:dot 1.2s ease-in-out infinite;
+  }
+  .preload .dots span:nth-child(2){animation-delay:.2s}
+  .preload .dots span:nth-child(3){animation-delay:.4s}
+  @keyframes dot{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-4px)}}
+
+  /* ===== NAV ===== */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 40px;
+    color:var(--marfim);
+    transition:background .35s ease, box-shadow .35s ease, color .35s ease, padding .35s ease;
+  }
+  .nav.solid{background:var(--marfim);color:var(--carvao);box-shadow:0 1px 0 rgba(31,27,22,.08), 0 8px 24px rgba(31,27,22,.04);padding:14px 40px}
+  .nav .brand{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:-.005em;line-height:1;display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none}
+  .nav .brand em{font-style:italic;font-weight:400}
+  .nav .brand .dot{width:6px;height:6px;border-radius:50%;background:var(--carmim);display:inline-block}
+  .nav.solid .brand .dot{background:var(--carmim)}
+  .nav .links{display:flex;gap:36px;align-items:center}
+  .nav .links a{
+    font-family:var(--sans);font-size:14px;font-weight:500;color:inherit;text-decoration:none;
+    letter-spacing:.02em;position:relative;padding:6px 0;
+  }
+  .nav .links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--carmim);
+    transition:width .35s ease;
+  }
+  .nav .links a:hover::after{width:100%}
+  .nav .cta{
+    font-family:var(--sans);font-size:13px;font-weight:500;
+    padding:10px 18px;border-radius:999px;background:var(--carmim);color:var(--dourado);
+    text-decoration:none;border:1px solid var(--carmim);
+    transition:transform .25s ease, background .25s ease;
+    letter-spacing:.04em;
+  }
+  .nav .cta:hover{transform:translateY(-1px);background:var(--bordo)}
+
+  /* ===== MAIN ===== */
+  main{position:relative;z-index:1}
+  section{
+    min-height:100vh;
+    padding:14vh 40px;
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;
+  }
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease, transform 1s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .label{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--dourado)}
+  .shadow-text{text-shadow:var(--shadow-text)}
+
+  /* ===== HERO (sec 1) ===== */
+  .hero{
+    text-align:center;align-items:center;
+    padding-top:18vh;padding-bottom:10vh;
+  }
+  .hero .label{margin-bottom:22px}
+  .hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(3rem,9vw,8.5rem);
+    line-height:.92;letter-spacing:-.015em;color:var(--marfim);
+    text-shadow:var(--shadow-text);max-width:14ch;
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--dourado);display:block}
+  .hero .tag{
+    font-family:var(--mono);font-size:13px;letter-spacing:.36em;text-transform:uppercase;
+    color:var(--dourado);margin-top:36px;text-shadow:var(--shadow-text);
+  }
+  .hero .sub{
+    font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2vw,1.6rem);
+    color:var(--marfim);margin-top:18px;opacity:.92;text-shadow:var(--shadow-text);
+  }
+  .scroll-ind{
+    position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--dourado);
+  }
+  .scroll-ind .line{
+    width:1px;height:54px;background:linear-gradient(180deg, transparent, var(--dourado));
+    animation:scrollPulse 2s ease-in-out infinite;transform-origin:top;
+  }
+  @keyframes scrollPulse{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+  .scroll-ind .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.32em;text-transform:uppercase;opacity:.85}
+
+  /* ===== MANIFESTO (sec 2) ===== */
+  .manifesto{align-items:flex-start;justify-content:center}
+  .manifesto .wrap{max-width:560px}
+  .manifesto h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(2.4rem,6vw,5rem);line-height:.98;letter-spacing:-.01em;
+    color:var(--marfim);text-shadow:var(--shadow-text);
+  }
+  .manifesto h2 em{font-style:italic;font-weight:400;color:var(--dourado)}
+  .manifesto p{
+    font-family:var(--sans);font-weight:400;font-size:clamp(1rem,1.3vw,1.2rem);
+    line-height:1.65;color:var(--marfim);margin-top:32px;
+    text-shadow:var(--shadow-text);max-width:480px;
+  }
+  .manifesto .sig{
+    margin-top:36px;font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--dourado);display:inline-flex;align-items:center;gap:14px;
+  }
+  .manifesto .sig::before{content:"";width:32px;height:1px;background:var(--dourado)}
+
+  /* ===== CATEGORIES (sec 3) ===== */
+  .categories{padding-top:18vh;padding-bottom:18vh}
+  .categories .head{text-align:center;margin-bottom:64px}
+  .categories h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(2.2rem,5vw,4rem);line-height:1;letter-spacing:-.005em;
+    color:var(--marfim);margin-top:14px;text-shadow:var(--shadow-text);
+  }
+  .categories h2 em{font-style:italic;font-weight:400;color:var(--dourado)}
+  .cat-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+    max-width:1200px;margin:0 auto;
+  }
+  .card{
+    background:rgba(244,236,221,.94);
+    border-radius:6px;padding:34px 28px 28px;
+    color:var(--carvao);position:relative;text-decoration:none;
+    transition:transform .35s ease, box-shadow .35s ease, background .35s ease;
+    cursor:pointer;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border:1px solid rgba(31,27,22,.06);
+    display:flex;flex-direction:column;gap:14px;min-height:240px;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(31,27,22,.18)}
+  .card .num{
+    font-family:var(--mono);font-size:11px;letter-spacing:.26em;
+    color:var(--dourado);font-weight:500;text-transform:uppercase;
+    transition:color .25s ease;
+  }
+  .card:hover .num{color:var(--carmim)}
+  .card h3{
+    font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,2.4vw,2rem);
+    line-height:1.05;color:var(--carvao);letter-spacing:-.005em;
+  }
+  .card p{
+    font-family:var(--sans);font-size:15px;line-height:1.5;
+    color:var(--carvao);opacity:.78;flex:1;
+  }
+  .card .more{
+    font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.04em;
+    color:var(--carmim);display:inline-flex;align-items:center;gap:6px;margin-top:auto;
+  }
+  .card .more .arrow{transition:transform .25s ease}
+  .card:hover .more .arrow{transform:translateX(4px)}
+
+  /* ===== CTA / VISITE (sec 4) ===== */
+  .visite{
+    padding-top:18vh;padding-bottom:14vh;
+    background:linear-gradient(180deg, transparent, rgba(31,27,22,.45) 30%, rgba(31,27,22,.55));
+  }
+  .visite .grid{
+    max-width:1200px;margin:0 auto;width:100%;
+    display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start;
+  }
+  .visite h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(2.6rem,6vw,5.5rem);line-height:.95;letter-spacing:-.01em;
+    color:var(--marfim);text-shadow:var(--shadow-text);max-width:10ch;
+  }
+  .visite h2 em{font-style:italic;font-weight:400;color:var(--dourado)}
+  .info{margin-top:48px;display:grid;grid-template-columns:140px 1fr;gap:14px 24px;align-items:baseline}
+  .info dt{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dourado);padding-top:6px}
+  .info dd{font-family:var(--sans);font-size:16px;line-height:1.55;color:var(--marfim);text-shadow:var(--shadow-text)}
+  .info dd em{font-style:italic;color:var(--dourado);font-family:var(--serif);font-size:18px}
+  .info dd a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(217,192,136,.35);padding-bottom:1px;transition:border-color .25s}
+  .info dd a:hover{border-color:var(--dourado)}
+
+  .whatsapp-card{
+    background:var(--carmim);color:var(--dourado);
+    padding:44px 36px;border-radius:8px;
+    box-shadow:0 24px 60px rgba(31,27,22,.35);
+    position:relative;overflow:hidden;
+  }
+  .whatsapp-card::before{
+    content:"";position:absolute;top:-40px;right:-40px;width:140px;height:140px;
+    border:1px solid rgba(217,192,136,.35);border-radius:50%;
+  }
+  .whatsapp-card::after{
+    content:"";position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;
+    border:1px solid rgba(217,192,136,.35);border-radius:50%;
+  }
+  .whatsapp-card .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--dourado);opacity:.85;position:relative;z-index:1}
+  .whatsapp-card h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3vw,2.4rem);line-height:1.05;color:var(--marfim);margin-top:14px;letter-spacing:-.005em;position:relative;z-index:1}
+  .whatsapp-card h3 em{font-style:italic;font-weight:400;color:var(--dourado)}
+  .whatsapp-card .desc{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--dourado);opacity:.92;margin-top:14px;max-width:280px;position:relative;z-index:1}
+  .whatsapp-card .number{
+    font-family:var(--serif);font-size:clamp(1.4rem,2.2vw,1.7rem);color:var(--dourado);
+    margin-top:24px;letter-spacing:.01em;position:relative;z-index:1;
+  }
+  .btn-wa{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:26px;padding:14px 22px;
+    background:var(--marfim);color:var(--carmim);
+    font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.04em;
+    text-decoration:none;border-radius:999px;
+    transition:transform .25s ease, box-shadow .25s ease;
+    position:relative;z-index:1;
+  }
+  .btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+  .btn-wa svg{width:18px;height:18px}
+  .hours{
+    margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--dourado);opacity:.75;position:relative;z-index:1;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--carvao);color:var(--marfim);
+    padding:80px 40px 36px;position:relative;z-index:2;
+  }
+  .foot-grid{
+    max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.4fr;gap:48px;
+  }
+  .foot-brand .wm{font-family:var(--serif);font-weight:500;font-size:32px;line-height:1;color:var(--dourado);letter-spacing:-.005em}
+  .foot-brand .wm em{font-style:italic;font-weight:400;display:block}
+  .foot-brand .tg{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--dourado);opacity:.75;margin-top:18px}
+  .foot-brand .ds{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--marfim);opacity:.7;margin-top:20px;max-width:300px}
+
+  .foot-col h4{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--dourado);font-weight:500;margin-bottom:18px}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .foot-col li a{font-family:var(--sans);font-size:14px;color:var(--marfim);opacity:.85;text-decoration:none;transition:color .25s}
+  .foot-col li a:hover{color:var(--dourado);opacity:1}
+
+  .foot-bottom{
+    max-width:1200px;margin:64px auto 0;padding-top:24px;
+    border-top:1px solid rgba(217,192,136,.18);
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--marfim);opacity:.55;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px){
+    .nav{padding:18px 24px}
+    .nav.solid{padding:12px 24px}
+    .nav .links{display:none}
+    section{padding:14vh 24px}
+    .cat-grid{grid-template-columns:repeat(2,1fr)}
+    .visite .grid{grid-template-columns:1fr;gap:48px}
+  }
+  @media (max-width: 640px){
+    .cat-grid{grid-template-columns:1fr}
+    .info{grid-template-columns:100px 1fr}
+    .foot-grid{grid-template-columns:1fr;gap:40px}
+    .foot-bottom{flex-direction:column;gap:12px;text-align:center}
+  }
+
+  /* mobile: replace fixed-bg scrub with hero-only loop */
+  @media (max-width: 768px){
+    .bg-video{position:absolute;height:100vh;top:0}
+    .bg-overlay{position:absolute;height:100vh;top:0}
+    main > section:not(:first-of-type){background:var(--marfim);color:var(--carvao)}
+    main > section:not(:first-of-type) h2,
+    main > section:not(:first-of-type) h2 em,
+    main > section:not(:first-of-type) p,
+    main > section:not(:first-of-type) .sig{color:var(--carvao);text-shadow:none}
+    main > section:not(:first-of-type) h2 em{color:var(--carmim)}
+    main > section:not(:first-of-type) .label,
+    main > section:not(:first-of-type) .sig{color:var(--carmim)}
+    .manifesto .sig::before{background:var(--carmim)}
+    .categories .card{background:#fff;border:1px solid rgba(31,27,22,.1)}
+    .visite{background:var(--marfim-2)}
+    .visite h2, .visite h2 em{color:var(--carvao)}
+    .visite h2 em{color:var(--carmim)}
+    .info dt{color:var(--carmim)}
+    .info dd{color:var(--carvao);text-shadow:none}
+    .info dd em{color:var(--carmim)}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .scroll-ind .line{animation:none;transform:scaleY(.8)}
+    .preload .dots span{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ========= PRELOADER ========= -->
+<div class="preload" id="preload" aria-hidden="true">
+  <div class="word">Flora Santa <em>Filomena</em></div>
+  <div class="dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- ========= VIDEO BACKGROUND ========= -->
+<video class="bg-video" id="bgVideo" muted playsinline preload="auto" crossorigin="anonymous" aria-hidden="true">
+  <source src="assets/flora-bloom.mp4" type="video/mp4" />
+</video>
+<div class="bg-overlay" aria-hidden="true"></div>
+
+<!-- ========= NAV ========= -->
+<header class="nav" id="nav">
+  <a href="#hero" class="brand"><span class="dot"></span>Flora Santa <em>Filomena</em></a>
+  <nav class="links">
+    <a href="#manifesto">Sobre</a>
+    <a href="#categorias">Categorias</a>
+    <a href="#visite">Visite</a>
+  </nav>
+  <a href="https://wa.me/5521994520613" class="cta" target="_blank" rel="noopener">WhatsApp</a>
+</header>
+
+<!-- ========= MAIN ========= -->
+<main id="main">
+
+  <!-- SECTION 1 — HERO -->
+  <section class="hero" id="hero" data-scene="1">
+    <div class="reveal">
+      <div class="label">— Floricultura · Botafogo · Rio de Janeiro</div>
+      <h1>Flora Santa <em>Filomena.</em></h1>
+      <div class="sub">Floricultura em Botafogo desde sempre.</div>
+      <div class="tag">— Uma flor de cada vez —</div>
+    </div>
+    <div class="scroll-ind" aria-hidden="true">
+      <div class="line"></div>
+      <div class="lbl">Role</div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 — MANIFESTO -->
+  <section class="manifesto" id="manifesto" data-scene="2">
+    <div class="wrap reveal">
+      <div class="label">— Manifesto</div>
+      <h2 style="margin-top:18px">Cada flor,<br/>escolhida <em>à mão</em>.</h2>
+      <p>Atendemos Botafogo há gerações. Buquês montados na hora, orquídeas escolhidas a dedo, e o respeito que cada ocasião pede — da festa ao luto.</p>
+      <div class="sig">A casa</div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — CATEGORIAS -->
+  <section class="categories" id="categorias" data-scene="3">
+    <div class="head reveal">
+      <div class="label">— O que fazemos</div>
+      <h2>Para cada <em>ocasião</em>.</h2>
+    </div>
+    <div class="cat-grid">
+
+      <a class="card reveal" href="https://wa.me/5521994520613?text=Ol%C3%A1%21%20Gostaria%20de%20pedir%20um%20buqu%C3%AA." target="_blank" rel="noopener">
+        <div class="num">01 · Buquês</div>
+        <h3>Para presentear.</h3>
+        <p>Rosas, gérberas, alstroemérias, girassóis. Cada arranjo montado na hora, com o tom que você pedir.</p>
+        <span class="more">Pedir <span class="arrow">→</span></span>
+      </a>
+
+      <a class="card reveal" href="https://wa.me/5521994520613?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20sobre%20casamento." target="_blank" rel="noopener">
+        <div class="num">02 · Casamento</div>
+        <h3>Da entrada ao altar.</h3>
+        <p>Buquê de noiva, arco, mesa, igreja. Acompanhamos do primeiro orçamento ao último detalhe.</p>
+        <span class="more">Pedir <span class="arrow">→</span></span>
+      </a>
+
+      <a class="card reveal" href="https://wa.me/5521994520613?text=Ol%C3%A1%21%20Gostaria%20de%20pedir%20para%20uma%20data%20comemorativa." target="_blank" rel="noopener">
+        <div class="num">03 · Datas comemorativas</div>
+        <h3>Mães, namorados, aniversários.</h3>
+        <p>Composição pensada para a data, entrega em toda a Zona Sul. Pedido até a véspera.</p>
+        <span class="more">Pedir <span class="arrow">→</span></span>
+      </a>
+
+      <a class="card reveal" href="https://wa.me/5521994520613?text=Ol%C3%A1.%20Gostaria%20de%20encomendar%20uma%20coroa." target="_blank" rel="noopener">
+        <div class="num">04 · Luto</div>
+        <h3>Despedidas com dignidade.</h3>
+        <p>Coroas e arranjos fúnebres. Entrega direta em velório, cemitério ou igreja, no horário combinado.</p>
+        <span class="more">Pedir <span class="arrow">→</span></span>
+      </a>
+
+      <a class="card reveal" href="https://wa.me/5521994520613?text=Ol%C3%A1%21%20Gostaria%20de%20pedir%20uma%20cesta." target="_blank" rel="noopener">
+        <div class="num">05 · Cestas</div>
+        <h3>Café da manhã e afetos.</h3>
+        <p>Cesta de café da manhã, frutas, presentes para quem você quer acordar bem.</p>
+        <span class="more">Pedir <span class="arrow">→</span></span>
+      </a>
+
+      <a class="card reveal" href="https://wa.me/5521994520613?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20sobre%20orqu%C3%ADdeas." target="_blank" rel="noopener">
+        <div class="num">06 · Orquídeas</div>
+        <h3>A casa em flor.</h3>
+        <p>Orquídeas selecionadas, vasos cerâmicos. Trocamos a haste sem custo enquanto a planta estiver com a gente.</p>
+        <span class="more">Pedir <span class="arrow">→</span></span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4 — VISITE -->
+  <section class="visite" id="visite" data-scene="4">
+    <div class="grid">
+
+      <div class="reveal">
+        <div class="label">— Visite</div>
+        <h2 style="margin-top:18px">Venha buscar a sua <em>flor</em>.</h2>
+
+        <dl class="info">
+          <dt>Endereço</dt>
+          <dd>Praia de Botafogo, 406 — Loja 11<br/><em>Botafogo · Rio de Janeiro · 22250-040</em></dd>
+
+          <dt>Telefone</dt>
+          <dd>(21) 2552-9396 &nbsp;·&nbsp; (21) 2553-7446</dd>
+
+          <dt>WhatsApp</dt>
+          <dd><a href="https://wa.me/5521994520613" target="_blank" rel="noopener">(21) 99452-0613</a> &nbsp;·&nbsp; <a href="https://wa.me/5521986993706" target="_blank" rel="noopener">(21) 98699-3706</a></dd>
+
+          <dt>E-mail</dt>
+          <dd><a href="mailto:contato.florasantafilomena@gmail.com">contato.florasantafilomena@gmail.com</a></dd>
+
+          <dt>Instagram</dt>
+          <dd><a href="https://instagram.com/flora_santafilomena" target="_blank" rel="noopener">@flora_santafilomena</a></dd>
+        </dl>
+      </div>
+
+      <aside class="whatsapp-card reveal">
+        <div class="lbl">— Atendimento rápido</div>
+        <h3>Pedido pelo <em>WhatsApp</em>.</h3>
+        <p class="desc">Mande foto, fala da ocasião, e a gente pensa o arranjo junto. Resposta em minutos no horário comercial.</p>
+        <div class="number">(21) 99452-0613</div>
+
+        <a href="https://wa.me/5521994520613?text=Ol%C3%A1%21%20Gostaria%20de%20fazer%20um%20pedido." class="btn-wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.6L3 21z"/>
+            <path d="M8.5 9.5c.2 1.4 1.6 3.6 2.9 4.5.6.4 1.9 1.1 2.6 1.3.6.2 1.2.1 1.5-.3l.5-.6c.2-.2.2-.6 0-.8l-1.4-1.2c-.2-.2-.5-.2-.7 0l-.4.4c-.7-.3-1.4-.9-1.9-1.6-.4-.5-.7-1-.9-1.6l.4-.4c.2-.2.2-.5 0-.7L9.9 7c-.2-.2-.6-.2-.8 0l-.6.5c-.4.3-.4.9 0 2z"/>
+          </svg>
+          Abrir WhatsApp
+        </a>
+
+        <div class="hours">Seg–Sex 8h–19h · Sáb 8h–14h · Dom fechado</div>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ========= FOOTER ========= -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="wm">Flora Santa <em>Filomena.</em></div>
+      <div class="tg">— Uma flor de cada vez —</div>
+      <div class="ds">Floricultura tradicional em Botafogo, Rio de Janeiro. Buquês, casamentos, datas comemorativas, luto, cestas e orquídeas.</div>
+    </div>
+
+    <div class="foot-col">
+      <h4>Atalhos</h4>
+      <ul>
+        <li><a href="#manifesto">Sobre</a></li>
+        <li><a href="#categorias">Categorias</a></li>
+        <li><a href="#visite">Visite</a></li>
+        <li><a href="https://wa.me/5521994520613" target="_blank" rel="noopener">Pedir</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a>Praia de Botafogo, 406 — Loja 11</a></li>
+        <li><a>(21) 2552-9396 · (21) 2553-7446</a></li>
+        <li><a href="https://wa.me/5521994520613" target="_blank" rel="noopener">WhatsApp (21) 99452-0613</a></li>
+        <li><a href="mailto:contato.florasantafilomena@gmail.com">contato.florasantafilomena@gmail.com</a></li>
+        <li><a href="https://instagram.com/flora_santafilomena" target="_blank" rel="noopener">@flora_santafilomena</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>© 2026 Flora Santa Filomena · Botafogo, Rio de Janeiro</span>
+    <span>Versão 1.0</span>
+  </div>
+</footer>
+
+<!-- ========= SCRIPTS ========= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  const video = document.getElementById('bgVideo');
+  const preload = document.getElementById('preload');
+  const nav = document.getElementById('nav');
+  const main = document.getElementById('main');
+
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ====== Preloader: hide once video is ready (or after 2.5s fallback) ======
+  let preloadHidden = false;
+  function hidePreload(){
+    if (preloadHidden) return;
+    preloadHidden = true;
+    preload.classList.add('gone');
+    setTimeout(() => preload.remove(), 900);
+  }
+  video.addEventListener('loadeddata', () => setTimeout(hidePreload, 250));
+  video.addEventListener('canplay', () => setTimeout(hidePreload, 250));
+  setTimeout(hidePreload, 2800); // hard fallback
+
+  // ====== Sticky nav: solid on scroll ======
+  function onScroll(){
+    if (window.scrollY > window.innerHeight * 0.85) nav.classList.add('solid');
+    else nav.classList.remove('solid');
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  // ====== Smooth scroll for nav anchors (no scrollIntoView) ======
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id === '#' || id.length < 2) return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  });
+
+  // ====== Reveal on scroll (lightweight observer) ======
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ====== Mobile: loop video in hero, no scrub ======
+  if (isMobile) {
+    video.loop = true;
+    video.autoplay = true;
+    video.play().catch(()=>{});
+    return;
+  }
+
+  // ====== Reduced motion: hold on last frame, no scrub ======
+  if (reduceMotion) {
+    video.addEventListener('loadedmetadata', () => {
+      try { video.currentTime = video.duration - 0.1; } catch(_) {}
+    });
+    return;
+  }
+
+  // ====== Desktop scrub: scroll controls currentTime ======
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tryAttach = () => {
+      if (!video.duration || isNaN(video.duration)) return;
+      ScrollTrigger.create({
+        trigger: main,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.8,
+        onUpdate(self){
+          const t = self.progress * video.duration;
+          if (!isNaN(t) && isFinite(t)) {
+            try { video.currentTime = t; } catch(_) {}
+          }
+        }
+      });
+      ScrollTrigger.refresh();
+    };
+
+    if (video.readyState >= 1 && video.duration) tryAttach();
+    else video.addEventListener('loadedmetadata', tryAttach, { once:true });
+
+    // Safari sometimes needs a nudge
+    video.addEventListener('canplay', () => ScrollTrigger.refresh(), { once:true });
+
+    // Pause if user explicitly scrolls — prevents auto-play
+    video.pause();
+  }
+})();
+</script>
+</body>
+</html>

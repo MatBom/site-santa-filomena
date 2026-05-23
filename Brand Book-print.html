@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Flora Santa Filomena — Brand Book v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --carmim:#AF3059;        /* primário, amostrado do logo */
+    --dourado:#D9C088;       /* secundário, amostrado do logo */
+    --dourado-quente:#C4A35F;
+    --verde:#2E4A37;         /* botânico */
+    --bordo:#6B1F2A;         /* devocional / fúnebre */
+    --marfim:#F4ECDD;        /* off-white pétala */
+    --marfim-2:#EBE0CC;
+    --carvao:#1F1B16;
+    --rosa-po:#E8C5C0;
+
+    --serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#2a2521;font-family:var(--sans);color:var(--carvao);-webkit-font-smoothing:antialiased}
+  body{display:flex;flex-direction:column;align-items:center;gap:36px;padding:36px 0 80px}
+
+  .page{
+    width:1080px;height:1920px;position:relative;overflow:hidden;
+    background:var(--marfim);
+    color:var(--carvao);
+    box-shadow:0 30px 80px rgba(0,0,0,.35);
+  }
+
+  @page { size: 1080px 1920px; margin: 0; }
+  @media print {
+    html, body {
+      background: #ffffff !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      gap: 0 !important;
+      display: block !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body { width: 1080px !important; }
+    .page {
+      width: 1080px !important;
+      height: 1920px !important;
+      box-shadow: none !important;
+      margin: 0 !important;
+      padding: 0;
+      break-after: page;
+      page-break-after: always;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      overflow: hidden;
+    }
+    .page:last-child {
+      break-after: auto;
+      page-break-after: auto;
+    }
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  }
+  .page--carmim{background:var(--carmim);color:var(--dourado)}
+  .page--carvao{background:var(--carvao);color:var(--marfim)}
+  .page--verde{background:var(--verde);color:var(--marfim)}
+  .page--bordo{background:var(--bordo);color:var(--dourado)}
+
+  .meta{
+    position:absolute;top:48px;left:64px;right:64px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+    color:inherit;opacity:.7;
+  }
+  .meta .dot{width:6px;height:6px;background:currentColor;border-radius:50%;display:inline-block;margin:0 10px;vertical-align:middle}
+  .foot{
+    position:absolute;bottom:48px;left:64px;right:64px;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:inherit;opacity:.65;
+  }
+  .pn{font-family:var(--mono);font-size:12px;letter-spacing:.14em}
+
+  .section-label{font-family:var(--mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;opacity:.7}
+  .h1{font-family:var(--serif);font-weight:500;font-size:128px;line-height:.95;letter-spacing:-.01em}
+  .h1 em{font-style:italic;font-weight:400}
+  .h2{font-family:var(--serif);font-weight:500;font-size:84px;line-height:.95;letter-spacing:-.005em}
+  .h2 em{font-style:italic;font-weight:400}
+  .h3{font-family:var(--serif);font-weight:500;font-size:46px;line-height:1.05}
+  .lede{font-family:var(--serif);font-style:italic;font-weight:400;font-size:38px;line-height:1.25}
+  .body{font-family:var(--sans);font-weight:400;font-size:21px;line-height:1.55;color:inherit}
+  .small{font-family:var(--sans);font-size:16px;line-height:1.5}
+  .mono{font-family:var(--mono);font-size:14px;letter-spacing:.06em}
+
+  /* ============ COVER ============ */
+  .cover{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:160px 64px}
+  .cover .arc{
+    position:absolute;inset:64px;border:1.5px solid var(--dourado);border-radius:9999px;
+    opacity:.55;
+  }
+  .cover .arc::before,.cover .arc::after{
+    content:"";position:absolute;left:50%;transform:translateX(-50%);
+    width:18px;height:18px;background:var(--dourado);border-radius:50%;
+  }
+  .cover .arc::before{top:-9px}
+  .cover .arc::after{bottom:-9px}
+  .cover-mark{font-family:var(--mono);font-size:14px;letter-spacing:.4em;text-transform:uppercase;color:var(--dourado);opacity:.85}
+  .cover-title{
+    font-family:var(--serif);color:var(--dourado);
+    font-weight:500;text-align:center;font-size:148px;line-height:.95;letter-spacing:-.01em;
+    margin:48px 0 24px;
+  }
+  .cover-title em{font-style:italic;font-weight:400;display:block}
+  .cover-rule{width:520px;height:1px;background:var(--dourado);opacity:.7;margin:32px 0}
+  .cover-tag{font-family:var(--serif);font-style:italic;font-size:38px;color:var(--dourado);text-align:center;max-width:680px;line-height:1.3}
+  .cover-flower{
+    display:block;margin:0 auto 0;width:140px;height:auto;
+  }
+
+  /* ============ MANIFESTO ============ */
+  .manifesto{padding:240px 96px 0}
+  .manifesto .h1{margin-bottom:64px;color:var(--carmim)}
+  .manifesto p{font-family:var(--serif);font-size:42px;line-height:1.32;color:var(--carvao);margin-bottom:28px;max-width:880px}
+  .manifesto p em{font-style:italic;color:var(--carmim)}
+  .manifesto .sig{
+    margin-top:80px;display:flex;align-items:center;gap:24px;
+    font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--carmim);opacity:.85;
+  }
+  .manifesto .sig::before{content:"";flex:0 0 60px;height:1px;background:var(--carmim);opacity:.6}
+
+  /* ============ TENSIONS ============ */
+  .tensions{padding:240px 80px 0}
+  .tensions .h2{color:var(--marfim);margin-bottom:56px}
+  .ten-row{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:32px;
+    padding:36px 0;border-top:1px solid rgba(244,236,221,.18);
+  }
+  .ten-row:last-child{border-bottom:1px solid rgba(244,236,221,.18)}
+  .ten-row .left{font-family:var(--serif);font-style:italic;font-size:52px;text-align:right;color:var(--dourado)}
+  .ten-row .right{font-family:var(--serif);font-size:52px;color:var(--marfim)}
+  .ten-row .sep{font-family:var(--serif);font-size:42px;color:var(--dourado);opacity:.7;line-height:1}
+  .ten-note{margin-top:48px;font-family:var(--serif);font-style:italic;font-size:28px;color:var(--dourado);line-height:1.4;max-width:760px}
+
+  /* ============ PERSONALIDADE ============ */
+  .personality{padding:240px 80px 0}
+  .personality .h2{color:var(--carmim);margin-bottom:64px}
+  .p-row{display:grid;grid-template-columns:280px 1fr 280px;align-items:baseline;gap:24px;padding:24px 0;border-top:1px solid rgba(31,27,22,.12)}
+  .p-row:last-child{border-bottom:1px solid rgba(31,27,22,.12)}
+  .p-row .a{font-family:var(--serif);font-size:34px;color:var(--carvao)}
+  .p-row .b{font-family:var(--serif);font-size:34px;color:var(--carvao);opacity:.55;text-align:right}
+  .p-row .scale{display:flex;justify-content:center;gap:14px}
+  .dot-on,.dot-off{width:22px;height:22px;border-radius:50%}
+  .dot-on{background:var(--carmim)}
+  .dot-off{background:transparent;border:1.5px solid rgba(175,48,89,.45)}
+  .p-note{margin-top:14px;font-family:var(--sans);font-size:17px;color:var(--carvao);opacity:.7;grid-column:1/-1;padding-bottom:8px}
+
+  /* ============ PALETTE ============ */
+  .palette{padding:200px 64px 0}
+  .palette .h2{margin-bottom:8px;color:var(--carvao)}
+  .palette .sub{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--carmim);margin-bottom:56px}
+  .swatch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .sw{position:relative;height:380px;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:32px}
+  .sw .sw-name{font-family:var(--serif);font-size:36px;line-height:1.1;letter-spacing:-.005em}
+  .sw .sw-meta{font-family:var(--mono);font-size:13px;letter-spacing:.08em;line-height:1.7;opacity:.9}
+  .sw .sw-use{font-family:var(--sans);font-size:14px;text-transform:uppercase;letter-spacing:.18em;opacity:.7}
+  .sw--carmim{background:var(--carmim);color:var(--dourado)}
+  .sw--dourado{background:var(--dourado);color:var(--bordo)}
+  .sw--verde{background:var(--verde);color:var(--marfim)}
+  .sw--marfim{background:var(--marfim-2);color:var(--carvao)}
+  .sw--bordo{background:var(--bordo);color:var(--dourado)}
+  .sw--carvao{background:var(--carvao);color:var(--marfim)}
+  .ratio-bar{display:flex;height:10px;margin-top:48px;border-radius:2px;overflow:hidden}
+  .ratio-bar div{height:100%}
+  .ratio-label{display:flex;justify-content:space-between;margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+
+  /* ============ TYPOGRAPHY ============ */
+  .typo{padding:200px 80px 0}
+  .typo .h2{margin-bottom:8px;color:var(--carmim)}
+  .typo .sub{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--carvao);opacity:.7;margin-bottom:64px}
+  .typo-block{padding:36px 0;border-top:1px solid rgba(31,27,22,.15);display:grid;grid-template-columns:240px 1fr;gap:32px}
+  .typo-block:last-of-type{border-bottom:1px solid rgba(31,27,22,.15)}
+  .typo-block .lbl{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--carvao);opacity:.6;padding-top:14px}
+  .typo-block .lbl b{display:block;color:var(--carmim);font-weight:500;font-family:var(--mono);margin-top:4px;letter-spacing:.16em}
+  .sample-h1{font-family:var(--serif);font-weight:500;font-size:108px;line-height:.95;color:var(--carvao)}
+  .sample-h1 em{font-style:italic;font-weight:400;color:var(--carmim)}
+  .sample-h2{font-family:var(--serif);font-weight:500;font-size:68px;line-height:1;color:var(--carvao)}
+  .sample-h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:42px;line-height:1.1;color:var(--bordo)}
+  .sample-body{font-family:var(--sans);font-size:22px;line-height:1.55;color:var(--carvao);max-width:640px}
+  .sample-cap{font-family:var(--mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--carmim)}
+  .glyphs{display:flex;gap:16px;font-family:var(--serif);font-size:64px;color:var(--carmim);padding:24px 0;border-top:1px solid rgba(31,27,22,.15);margin-top:24px}
+  .glyphs span{flex:1;text-align:center}
+
+  /* ============ LOGO ============ */
+  .logo-page{padding:200px 64px 0;background:var(--marfim)}
+  .logo-page .h2{color:var(--carmim);margin-bottom:8px}
+  .logo-page .sub{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--carvao);opacity:.7;margin-bottom:56px}
+  .logo-hero{
+    background:var(--carmim);height:560px;border-radius:4px;display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;
+  }
+  .logo-hero img{height:440px;width:auto}
+  .logo-hero .corner{position:absolute;top:18px;left:24px;font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--dourado);opacity:.7;text-transform:uppercase}
+  .logo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:18px}
+  .logo-grid .cell{height:300px;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;position:relative}
+  .logo-grid .cell .tag{position:absolute;top:14px;left:18px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+  .c-marfim{background:var(--marfim-2);color:var(--carmim)}
+  .c-carmim{background:var(--carmim);color:var(--dourado)}
+  .c-carvao{background:var(--carvao);color:var(--dourado)}
+
+  .wordmark-stack{font-family:var(--serif);font-weight:500;text-align:center;line-height:.95}
+  .wordmark-stack .a{font-size:48px;font-style:normal}
+  .wordmark-stack .rule{width:160px;height:1.4px;background:currentColor;margin:10px auto;opacity:.85}
+  .wordmark-stack .b{font-size:48px}
+  .wordmark-inline{font-family:var(--serif);font-weight:500;font-size:54px;letter-spacing:-.005em}
+  .wordmark-inline em{font-style:italic;font-weight:400}
+  .seal{
+    width:200px;height:200px;border-radius:50%;border:1.5px solid currentColor;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;
+  }
+  .seal .top{font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase}
+  .seal .mid{font-family:var(--serif);font-style:italic;font-size:30px;line-height:1}
+  .seal .bot{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.8}
+
+  .clear-space{margin-top:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:start}
+  .cs-box{background:var(--marfim-2);height:420px;border-radius:4px;position:relative;display:flex;align-items:center;justify-content:center}
+  .cs-box .inner{width:62%;height:62%;border:1px dashed var(--carmim);display:flex;align-items:center;justify-content:center;position:relative}
+  .cs-box .inner img{height:180px}
+  .cs-box .x{position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--carmim);text-transform:uppercase}
+  .cs-box .x.t{top:-14px;left:50%;transform:translateX(-50%);background:var(--marfim-2);padding:0 6px}
+  .cs-box .x.b{bottom:-14px;left:50%;transform:translateX(-50%);background:var(--marfim-2);padding:0 6px}
+  .cs-box .x.l{left:-14px;top:50%;transform:translateY(-50%) rotate(-90deg);background:var(--marfim-2);padding:0 6px}
+  .cs-box .x.r{right:-14px;top:50%;transform:translateY(-50%) rotate(90deg);background:var(--marfim-2);padding:0 6px}
+  .cs-text{font-family:var(--sans);font-size:18px;line-height:1.55;color:var(--carvao)}
+  .cs-text b{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--carmim);display:block;margin-bottom:10px;font-weight:500}
+  .cs-text p{margin-bottom:14px}
+
+  /* ============ ICONS ============ */
+  .icons-page{padding:200px 80px 0}
+  .icons-page .h2{color:var(--marfim);margin-bottom:8px}
+  .icons-page .sub{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--dourado);margin-bottom:64px}
+  .icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .ico{aspect-ratio:1/1;border:1px solid rgba(217,192,136,.35);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:18px}
+  .ico svg{width:88px;height:88px;color:var(--dourado)}
+  .ico .nm{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--marfim);opacity:.85}
+  .icon-rule{margin-top:48px;font-family:var(--serif);font-style:italic;font-size:26px;color:var(--dourado);line-height:1.4;text-align:center}
+
+  /* ============ VOICE ============ */
+  .voice{padding:200px 80px 0}
+  .voice .h2{color:var(--carmim);margin-bottom:8px}
+  .voice .sub{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--carvao);opacity:.75;margin-bottom:56px}
+  .v-principles{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:48px}
+  .v-principles .p{border-top:1.5px solid var(--carmim);padding-top:14px}
+  .v-principles .p .n{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--carmim);text-transform:uppercase}
+  .v-principles .p .t{font-family:var(--serif);font-size:26px;line-height:1.1;color:var(--carvao);margin-top:8px}
+  .v-table{width:100%;border-collapse:collapse}
+  .v-table th{
+    text-align:left;font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    padding:14px 0;border-bottom:1.5px solid var(--carvao);color:var(--carvao);
+  }
+  .v-table th:last-child{color:var(--carmim);border-bottom-color:var(--carmim)}
+  .v-table td{padding:18px 24px 18px 0;border-bottom:1px solid rgba(31,27,22,.15);vertical-align:top;font-family:var(--serif);font-size:24px;line-height:1.35;color:var(--carvao)}
+  .v-table td.yes{color:var(--carvao)}
+  .v-table td.no{color:var(--carvao);opacity:.5;font-style:italic;text-decoration:line-through;text-decoration-color:rgba(175,48,89,.6);text-decoration-thickness:1px}
+
+  /* ============ APPLICATIONS ============ */
+  .apps{padding:200px 64px 0}
+  .apps .h2{color:var(--carvao);margin-bottom:8px}
+  .apps .sub{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--carmim);margin-bottom:48px}
+  .apps-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:18px;height:1200px}
+  .app{padding:36px;display:flex;flex-direction:column;justify-content:space-between;border-radius:4px;position:relative;overflow:hidden}
+  .app .cat{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+  .app .tt{font-family:var(--serif);font-size:54px;line-height:1;letter-spacing:-.01em}
+  .app .tt em{font-style:italic;font-weight:400}
+  .app .ds{font-family:var(--sans);font-size:16px;line-height:1.5;max-width:340px}
+  .app .palette-strip{display:flex;gap:8px}
+  .app .palette-strip span{width:36px;height:36px;border-radius:50%}
+  .app-cas{background:var(--marfim);color:var(--carvao)}
+  .app-cas .accent{color:var(--verde)}
+  .app-fun{background:var(--carvao);color:var(--marfim)}
+  .app-fun .accent{color:var(--dourado)}
+  .app-cot{background:var(--dourado);color:var(--bordo)}
+  .app-cot .accent{color:var(--bordo)}
+  .app-dat{background:var(--carmim);color:var(--dourado)}
+  .app-dat .accent{color:var(--marfim)}
+
+  /* ============ DON'TS ============ */
+  .donts{padding:200px 80px 0}
+  .donts .h2{color:var(--carmim);margin-bottom:8px}
+  .donts .sub{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--carvao);opacity:.75;margin-bottom:48px}
+  .donts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+  .dont{aspect-ratio:1/1;background:var(--marfim-2);border-radius:4px;display:flex;flex-direction:column;justify-content:space-between;padding:24px;position:relative;overflow:hidden}
+  .dont .x{position:absolute;top:18px;right:18px;width:28px;height:28px;border-radius:50%;background:var(--carmim);color:var(--dourado);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:16px;font-weight:600}
+  .dont .demo{flex:1;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:30px;color:var(--carvao);text-align:center}
+  .dont .cap{font-family:var(--sans);font-size:14px;line-height:1.4;color:var(--carvao);opacity:.85}
+
+  /* ============ CONTACT ============ */
+  .contact{padding:240px 80px 0}
+  .contact .h1{color:var(--dourado);margin-bottom:48px}
+  .contact .h1 em{font-style:italic;font-weight:400}
+  .contact .row{display:grid;grid-template-columns:240px 1fr;gap:18px;padding:18px 0;border-top:1px solid rgba(217,192,136,.28);align-items:baseline}
+  .contact .row:last-child{border-bottom:1px solid rgba(217,192,136,.28)}
+  .contact .row .k{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--dourado);opacity:.75}
+  .contact .row .v{font-family:var(--serif);font-size:32px;line-height:1.2;color:var(--marfim)}
+  .contact .row .v em{font-style:italic;color:var(--dourado);font-weight:400}
+  .contact .sig-block{margin-top:80px;display:flex;justify-content:space-between;align-items:flex-end}
+  .contact .sig-block .biglogo{font-family:var(--serif);font-style:italic;font-size:78px;color:var(--dourado);line-height:1}
+  .contact .sig-block .ver{text-align:right;font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--dourado);opacity:.7;line-height:1.7}
+
+  /* utility */
+  .em{font-style:italic}
+</style>
+</head>
+<body>
+
+<!-- =============================== 01 CAPA =============================== -->
+<section class="page page--carmim cover" data-screen-label="01 Capa">
+  <div class="arc"></div>
+  <div class="meta" style="color:var(--dourado)">
+    <span>Brand Book <span class="dot"></span> Versão 1.0</span>
+    <span>Botafogo <span class="dot"></span> Rio de Janeiro</span>
+  </div>
+
+  <svg class="cover-flower" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--dourado)">
+    <path d="M60 18 L52 44 L60 56 L68 44 Z" stroke-linejoin="round"/>
+    <path d="M52 44 C 36 46, 28 60, 32 72 C 44 68, 54 60, 60 56" stroke-linejoin="round"/>
+    <path d="M68 44 C 84 46, 92 60, 88 72 C 76 68, 66 60, 60 56" stroke-linejoin="round"/>
+    <path d="M60 56 L60 78"/>
+    <circle cx="60" cy="82" r="3.2"/>
+  </svg>
+
+  <div class="cover-mark" style="margin-top:34px">Floricultura · Estabelecida em Botafogo</div>
+
+  <h1 class="cover-title">
+    Flora Santa<br/>
+    <em>Filomena</em>
+  </h1>
+
+  <div class="cover-rule"></div>
+
+  <div class="cover-tag">
+    Flores que <em>cuidam</em> de quem fica,<br/>
+    de quem celebra, de quem se despede.
+  </div>
+
+  <div class="foot" style="color:var(--dourado)">
+    <span>FSF · Brand Guidelines</span>
+    <span>01 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 02 MANIFESTO =============================== -->
+<section class="page manifesto" data-screen-label="02 Manifesto">
+  <div class="meta">
+    <span>02 · Manifesto</span>
+    <span>Quem somos</span>
+  </div>
+
+  <div class="section-label" style="color:var(--carmim);margin-bottom:36px">— Nosso credo</div>
+  <h1 class="h1">O que <em>plantamos</em><br/>aqui dentro.</h1>
+
+  <div style="margin-top:80px;max-width:900px">
+    <p>Somos uma floricultura de <em>bairro</em>, em Botafogo, há gerações montando flor com a mesma mão que escreve um bilhete.</p>
+    <p>Acreditamos que flor não é enfeite — é <em>linguagem</em>. Diz “casa comigo”, “sinto muito”, “bom dia”, “estou aqui” quando a gente não acha as palavras.</p>
+    <p>Carregamos o nome de uma <em>santa</em> porque entendemos o que ela protege: o começo da vida, a mãe, a causa difícil. A gente trata cada pedido nesse peso.</p>
+    <p>Do buquê de noiva à coroa fúnebre, do café da manhã à decoração de evento — fazemos <em>uma flor de cada vez</em>, com o respeito de quem sabe para onde ela vai.</p>
+  </div>
+
+  <div class="sig">Flora Santa Filomena · Botafogo, RJ · Desde sempre</div>
+
+  <div class="foot">
+    <span>FSF · Brand Guidelines</span>
+    <span>02 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 03 TENSÕES =============================== -->
+<section class="page page--verde tensions" data-screen-label="03 Tensoes">
+  <div class="meta" style="color:var(--dourado)">
+    <span>03 · Tensões</span>
+    <span>A marca vive entre</span>
+  </div>
+
+  <div class="section-label" style="color:var(--dourado);margin-bottom:32px">— Três eixos</div>
+  <h2 class="h2">Três <em>tensões</em><br/>que nos definem.</h2>
+
+  <div style="margin-top:88px">
+    <div class="ten-row">
+      <div class="left">Tradicional</div>
+      <div class="sep">·····</div>
+      <div class="right">Contemporâneo</div>
+    </div>
+    <div class="ten-row">
+      <div class="left">Sagrado · ritual</div>
+      <div class="sep">·····</div>
+      <div class="right">Cotidiano · afeto</div>
+    </div>
+    <div class="ten-row">
+      <div class="left">Botânico</div>
+      <div class="sep">·····</div>
+      <div class="right">Devocional</div>
+    </div>
+  </div>
+
+  <div class="ten-note">
+    Nunca optamos por um lado. A marca <span class="em">respira</span> nessas tensões — é o que separa a floricultura de bairro da florista qualquer, e é o que separa o sagrado do brega.
+  </div>
+
+  <div class="foot" style="color:var(--dourado)">
+    <span>FSF · Brand Guidelines</span>
+    <span>03 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 04 PERSONALIDADE =============================== -->
+<section class="page personality" data-screen-label="04 Personalidade">
+  <div class="meta">
+    <span>04 · Personalidade</span>
+    <span>Atributos da marca</span>
+  </div>
+
+  <div class="section-label" style="color:var(--carmim);margin-bottom:28px">— Cinco escalas</div>
+  <h2 class="h2" style="color:var(--carmim)">Como nos <em>portamos</em>.</h2>
+
+  <div style="margin-top:88px">
+    <div class="p-row">
+      <div class="a">Devocional</div>
+      <div class="scale"><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span><span class="dot-off"></span></div>
+      <div class="b">Decorativo</div>
+      <div class="p-note">O nome é Santa Filomena. Tratamos a flor com a reverência de quem entende que ela carrega um recado importante.</div>
+    </div>
+    <div class="p-row">
+      <div class="a">Afetivo</div>
+      <div class="scale"><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span></div>
+      <div class="b">Distante</div>
+      <div class="p-note">Sempre. Carioca, acolhedor, presente — falamos como quem atende no balcão.</div>
+    </div>
+    <div class="p-row">
+      <div class="a">Tradicional</div>
+      <div class="scale"><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span><span class="dot-off"></span><span class="dot-off"></span></div>
+      <div class="b">Moderno</div>
+      <div class="p-note">Raiz de bairro, com estética atualizada para o público da Zona Sul. Nem retrô, nem minimalista frio.</div>
+    </div>
+    <div class="p-row">
+      <div class="a">Sóbrio</div>
+      <div class="scale"><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span><span class="dot-off"></span></div>
+      <div class="b">Festivo</div>
+      <div class="p-note">A sobriedade é a base. Cor e festa entram pela flor — não pela marca.</div>
+    </div>
+    <div class="p-row">
+      <div class="a">Artesanal</div>
+      <div class="scale"><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span><span class="dot-on"></span><span class="dot-off"></span></div>
+      <div class="b">Industrial</div>
+      <div class="p-note">Cada arranjo é montado à mão. A comunicação reflete isso: imperfeição cuidada, nunca repetição mecânica.</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>FSF · Brand Guidelines</span>
+    <span>04 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 05 PALETA =============================== -->
+<section class="page palette" data-screen-label="05 Paleta">
+  <div class="meta">
+    <span>05 · Paleta cromática</span>
+    <span>Amostrada do logo</span>
+  </div>
+
+  <div class="section-label" style="color:var(--carmim);margin-bottom:18px">— Seis cores próprias</div>
+  <h2 class="h2">A cor de <em>Filomena</em>.</h2>
+  <div class="sub">Carmim e dourado nascem do selo. As demais existem para sustentá-los.</div>
+
+  <div class="swatch-grid">
+    <div class="sw sw--carmim">
+      <div>
+        <div class="sw-use">Primária</div>
+        <div class="sw-name" style="margin-top:8px">Carmim<br/>Filomena</div>
+      </div>
+      <div class="sw-meta">
+        HEX&nbsp;&nbsp;#AF3059<br/>
+        RGB&nbsp;&nbsp;175 · 48 · 89<br/>
+        CMYK&nbsp;0 · 73 · 49 · 31
+      </div>
+    </div>
+    <div class="sw sw--dourado">
+      <div>
+        <div class="sw-use">Secundária</div>
+        <div class="sw-name" style="margin-top:8px">Dourado<br/>Pétala</div>
+      </div>
+      <div class="sw-meta">
+        HEX&nbsp;&nbsp;#D9C088<br/>
+        RGB&nbsp;&nbsp;217 · 192 · 136<br/>
+        CMYK&nbsp;0 · 12 · 37 · 15
+      </div>
+    </div>
+    <div class="sw sw--verde">
+      <div>
+        <div class="sw-use">Acento botânico</div>
+        <div class="sw-name" style="margin-top:8px">Verde<br/>Botafogo</div>
+      </div>
+      <div class="sw-meta">
+        HEX&nbsp;&nbsp;#2E4A37<br/>
+        RGB&nbsp;&nbsp;46 · 74 · 55<br/>
+        CMYK&nbsp;38 · 0 · 26 · 71
+      </div>
+    </div>
+    <div class="sw sw--bordo">
+      <div>
+        <div class="sw-use">Acento litúrgico</div>
+        <div class="sw-name" style="margin-top:8px">Bordô<br/>Devocional</div>
+      </div>
+      <div class="sw-meta">
+        HEX&nbsp;&nbsp;#6B1F2A<br/>
+        RGB&nbsp;&nbsp;107 · 31 · 42<br/>
+        CMYK&nbsp;0 · 71 · 61 · 58
+      </div>
+    </div>
+    <div class="sw sw--marfim">
+      <div>
+        <div class="sw-use">Neutro / fundo</div>
+        <div class="sw-name" style="margin-top:8px">Marfim<br/>Pétala</div>
+      </div>
+      <div class="sw-meta">
+        HEX&nbsp;&nbsp;#F4ECDD<br/>
+        RGB&nbsp;&nbsp;244 · 236 · 221<br/>
+        CMYK&nbsp;0 · 3 · 9 · 4
+      </div>
+    </div>
+    <div class="sw sw--carvao">
+      <div>
+        <div class="sw-use">Texto / suporte</div>
+        <div class="sw-name" style="margin-top:8px">Carvão<br/>Filomena</div>
+      </div>
+      <div class="sw-meta">
+        HEX&nbsp;&nbsp;#1F1B16<br/>
+        RGB&nbsp;&nbsp;31 · 27 · 22<br/>
+        CMYK&nbsp;0 · 13 · 29 · 88
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:48px">
+    <div class="ratio-bar">
+      <div style="flex:46;background:var(--carmim)"></div>
+      <div style="flex:22;background:var(--marfim-2)"></div>
+      <div style="flex:14;background:var(--dourado)"></div>
+      <div style="flex:8;background:var(--verde)"></div>
+      <div style="flex:6;background:var(--bordo)"></div>
+      <div style="flex:4;background:var(--carvao)"></div>
+    </div>
+    <div class="ratio-label">
+      <span>Carmim 46%</span><span>Marfim 22%</span><span>Dourado 14%</span><span>Verde 8%</span><span>Bordô 6%</span><span>Carvão 4%</span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>FSF · Brand Guidelines</span>
+    <span>05 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 06 TIPOGRAFIA =============================== -->
+<section class="page typo" data-screen-label="06 Tipografia">
+  <div class="meta">
+    <span>06 · Tipografia</span>
+    <span>Serifa display + sans neutra</span>
+  </div>
+
+  <div class="section-label" style="color:var(--carmim);margin-bottom:18px">— Dois tipos, uma voz</div>
+  <h2 class="h2">Letra de <em>botânica</em><br/>e letra de <em>bilhete</em>.</h2>
+  <div class="sub">Cormorant Garamond carrega a tradição; Inter dá a clareza do dia a dia.</div>
+
+  <div class="typo-block">
+    <div class="lbl">Display<br/><b>Cormorant Garamond</b><br/>Regular · Medium · Italic<br/>Tracking −0.5%</div>
+    <div>
+      <div class="sample-h1">Buquê de <em>Filomena</em></div>
+      <div class="glyphs"><span>Aa</span><span>Bb</span><span>Cc</span><span>Ff</span><span>Ss</span><span>&amp;</span></div>
+    </div>
+  </div>
+
+  <div class="typo-block">
+    <div class="lbl">Subtítulo<br/><b>Cormorant — Italic</b><br/>Regular Italic · 42–68px</div>
+    <div>
+      <div class="sample-h3">Há flor para casamento, para luto, para café da manhã — e há respeito para cada uma.</div>
+    </div>
+  </div>
+
+  <div class="typo-block">
+    <div class="lbl">Texto<br/><b>Inter</b><br/>Regular · Medium · 18–22px<br/>Tracking 0 · Leading 1.55</div>
+    <div>
+      <div class="sample-body">Atendemos buquês, arranjos, coroas, cestas, decoração de casamentos e eventos. Orçamentos sob medida pelo WhatsApp ou pela loja, em Botafogo, da segunda ao sábado.</div>
+    </div>
+  </div>
+
+  <div class="typo-block">
+    <div class="lbl">Etiqueta<br/><b>JetBrains Mono</b><br/>Medium · 12–14px<br/>Tracking +18%</div>
+    <div>
+      <div class="sample-cap">Botafogo · Rio de Janeiro · Desde Sempre</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>FSF · Brand Guidelines</span>
+    <span>06 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 07 LOGOTIPO =============================== -->
+<section class="page logo-page" data-screen-label="07 Logotipo">
+  <div class="meta">
+    <span>07 · Logotipo</span>
+    <span>Selo primário e variações</span>
+  </div>
+
+  <div class="section-label" style="color:var(--carmim);margin-bottom:18px">— Marca registrada</div>
+  <h2 class="h2">O <em>selo</em> e suas vidas.</h2>
+  <div class="sub">O selo circular é o gesto principal. As variações textuais existem para onde o círculo não cabe.</div>
+
+  <div class="logo-hero">
+    <span class="corner">Selo primário · sobre Carmim</span>
+    <img src="assets/logo.png" alt="Selo Flora Santa Filomena" />
+  </div>
+
+  <div class="logo-grid">
+    <div class="cell c-marfim">
+      <span class="tag">Wordmark · Empilhado</span>
+      <div class="wordmark-stack">
+        <div class="a">Flora Santa</div>
+        <div class="rule"></div>
+        <div class="b">Filomena</div>
+      </div>
+    </div>
+    <div class="cell c-carmim">
+      <span class="tag">Assinatura · Inline</span>
+      <div class="wordmark-inline">Flora · <em>Filomena</em></div>
+    </div>
+    <div class="cell c-carvao">
+      <span class="tag">Selo reduzido</span>
+      <div class="seal">
+        <div class="top">· Botafogo · RJ ·</div>
+        <div class="mid">Filomena</div>
+        <div class="bot">Desde Sempre</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clear-space">
+    <div class="cs-box">
+      <span class="x t">↑ x</span>
+      <span class="x b">↓ x</span>
+      <span class="x l">x</span>
+      <span class="x r">x</span>
+      <div class="inner">
+        <img src="assets/logo.png" alt="Clear space"/>
+      </div>
+    </div>
+    <div class="cs-text">
+      <b>Área de proteção</b>
+      <p>Mantenha em torno do selo, em todas as direções, uma margem mínima equivalente a <em>x</em> — a altura da letra F do wordmark.</p>
+      <b>Tamanho mínimo</b>
+      <p>Não reduza o selo abaixo de <em>24 mm</em> em impresso, ou <em>96 px</em> em tela. Abaixo disso, use a assinatura inline ou o monograma “FSF”.</p>
+      <b>Fundos permitidos</b>
+      <p>Carmim (principal), Marfim, Carvão e Verde Botafogo. Sobre fotografia, apenas com véu carmim a 80%.</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>FSF · Brand Guidelines</span>
+    <span>07 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 08 ICONOGRAFIA =============================== -->
+<section class="page page--bordo icons-page" data-screen-label="08 Iconografia">
+  <div class="meta" style="color:var(--dourado)">
+    <span>08 · Iconografia</span>
+    <span>Botânica · Devocional</span>
+  </div>
+
+  <div class="section-label" style="color:var(--dourado);margin-bottom:18px">— Linha fina, traço único</div>
+  <h2 class="h2" style="color:var(--marfim)">Vocabulário <em>visual</em>.</h2>
+  <div class="sub">Sempre em traço de 1.5 px, terminações arredondadas, em dourado ou marfim sobre fundo escuro.</div>
+
+  <div class="icon-grid">
+    <!-- Folha -->
+    <div class="ico">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 50 C 14 28, 30 14, 52 14 C 52 36, 36 50, 14 50 Z"/>
+        <path d="M14 50 L 48 18"/>
+      </svg>
+      <div class="nm">Folha</div>
+    </div>
+    <!-- Ramo -->
+    <div class="ico">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 54 L 32 10"/>
+        <path d="M32 20 C 24 20, 20 14, 18 12"/>
+        <path d="M32 28 C 40 28, 44 22, 46 20"/>
+        <path d="M32 36 C 24 36, 20 30, 18 28"/>
+        <path d="M32 44 C 40 44, 44 38, 46 36"/>
+      </svg>
+      <div class="nm">Ramo</div>
+    </div>
+    <!-- Hibisco -->
+    <div class="ico">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 18 L 26 30 L 32 36 L 38 30 Z"/>
+        <path d="M26 30 C 16 31, 12 40, 14 46 C 22 44, 28 38, 32 36"/>
+        <path d="M38 30 C 48 31, 52 40, 50 46 C 42 44, 36 38, 32 36"/>
+        <path d="M32 36 L 32 50"/>
+      </svg>
+      <div class="nm">Hibisco</div>
+    </div>
+    <!-- Rosa -->
+    <div class="ico">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="32" cy="26" r="14"/>
+        <path d="M22 26 C 24 20, 30 18, 32 22"/>
+        <path d="M32 22 C 36 18, 42 22, 42 28"/>
+        <path d="M26 32 C 28 28, 34 28, 36 32"/>
+        <path d="M32 40 L 32 54"/>
+      </svg>
+      <div class="nm">Rosa</div>
+    </div>
+    <!-- Buquê -->
+    <div class="ico">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="22" cy="22" r="6"/>
+        <circle cx="42" cy="22" r="6"/>
+        <circle cx="32" cy="14" r="5"/>
+        <path d="M22 28 L 32 44"/>
+        <path d="M42 28 L 32 44"/>
+        <path d="M32 19 L 32 44"/>
+        <path d="M24 50 L 40 50 L 36 58 L 28 58 Z"/>
+      </svg>
+      <div class="nm">Buquê</div>
+    </div>
+    <!-- Coroa -->
+    <div class="ico">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="32" cy="34" rx="22" ry="14"/>
+        <ellipse cx="32" cy="34" rx="14" ry="9"/>
+        <path d="M22 22 C 22 16, 26 14, 32 14 C 38 14, 42 16, 42 22"/>
+      </svg>
+      <div class="nm">Coroa</div>
+    </div>
+    <!-- Fita -->
+    <div class="ico">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 20 C 18 20, 16 26, 20 30 C 24 34, 32 32, 32 32"/>
+        <path d="M40 20 C 46 20, 48 26, 44 30 C 40 34, 32 32, 32 32"/>
+        <path d="M32 32 L 26 54"/>
+        <path d="M32 32 L 38 54"/>
+        <path d="M26 54 L 32 50 L 38 54"/>
+      </svg>
+      <div class="nm">Fita</div>
+    </div>
+    <!-- Arco devocional -->
+    <div class="ico">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 54 L 14 28 C 14 18, 22 12, 32 12 C 42 12, 50 18, 50 28 L 50 54"/>
+        <path d="M14 54 L 50 54"/>
+        <circle cx="32" cy="30" r="3"/>
+      </svg>
+      <div class="nm">Arco</div>
+    </div>
+  </div>
+
+  <div class="icon-rule">Um ícone não é decoração — é assinatura. Use no máximo um por peça, nunca dois juntos.</div>
+
+  <div class="foot" style="color:var(--dourado)">
+    <span>FSF · Brand Guidelines</span>
+    <span>08 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 09 TOM DE VOZ =============================== -->
+<section class="page voice" data-screen-label="09 Tom de voz">
+  <div class="meta">
+    <span>09 · Tom de voz</span>
+    <span>Como escrevemos</span>
+  </div>
+
+  <div class="section-label" style="color:var(--carmim);margin-bottom:18px">— Carioca culto · acolhedor · sóbrio</div>
+  <h2 class="h2" style="color:var(--carmim)">A <em>voz</em><br/>de Filomena.</h2>
+  <div class="sub">Cinco princípios e uma tabela curta de calibragem.</div>
+
+  <div class="v-principles">
+    <div class="p"><div class="n">01</div><div class="t">Fale como quem atende.</div></div>
+    <div class="p"><div class="n">02</div><div class="t">Sem diminutivo forçado.</div></div>
+    <div class="p"><div class="n">03</div><div class="t">Respeito absoluto no luto.</div></div>
+    <div class="p"><div class="n">04</div><div class="t">Botafogo, não &ldquo;interior&rdquo;.</div></div>
+    <div class="p"><div class="n">05</div><div class="t">Flor antes de adjetivo.</div></div>
+  </div>
+
+  <table class="v-table">
+    <thead>
+      <tr><th style="width:50%">Dizemos</th><th>Não dizemos</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="yes">Buquê montado à mão, hoje, na loja.</td><td class="no">Buquê exclusivo, premium, artesanal único.</td></tr>
+      <tr><td class="yes">Sentimos com você. Estamos com a coroa pronta.</td><td class="no">Lamentamos sua perda. Adquira já nossa coroa.</td></tr>
+      <tr><td class="yes">Manda foto da casa que a gente pensa o arranjo junto.</td><td class="no">Solicite seu orçamento personalizado.</td></tr>
+      <tr><td class="yes">Café da manhã para a sua mãe acordar bem.</td><td class="no">Surpreenda mamãezinha com nossa cestinha!</td></tr>
+      <tr><td class="yes">Casamento em Botafogo, fim de tarde, branco e verde.</td><td class="no">Decoração inesquecível para o seu grande dia.</td></tr>
+      <tr><td class="yes">A gente entrega na Zona Sul até as 19h.</td><td class="no">Entrega expressa garantida em toda a cidade.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot">
+    <span>FSF · Brand Guidelines</span>
+    <span>09 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 10 APLICAÇÕES POR CATEGORIA =============================== -->
+<section class="page apps" data-screen-label="10 Aplicacoes">
+  <div class="meta">
+    <span>10 · Aplicações</span>
+    <span>Quatro tratamentos</span>
+  </div>
+
+  <div class="section-label" style="color:var(--carmim);margin-bottom:18px">— Uma marca, quatro vozes</div>
+  <h2 class="h2">A <em>flor</em> muda<br/>conforme o destino.</h2>
+  <div class="sub">Cada linha de produto tem sua paleta dentro da paleta — sem nunca sair do sistema.</div>
+
+  <div class="apps-grid">
+    <div class="app app-cas">
+      <div>
+        <div class="cat accent">— Casamento</div>
+        <div class="tt" style="margin-top:18px">Branco,<br/>verde, <em>luz</em>.</div>
+      </div>
+      <div class="ds">Buquês de noiva, arcos, mesa. Marfim como base, verde Botafogo como pulso. Tipografia em itálico, fotografia em luz natural.</div>
+      <div class="palette-strip">
+        <span style="background:var(--marfim-2)"></span>
+        <span style="background:var(--verde)"></span>
+        <span style="background:var(--dourado)"></span>
+        <span style="background:#fff;border:1px solid var(--carvao)"></span>
+      </div>
+    </div>
+
+    <div class="app app-fun">
+      <div>
+        <div class="cat accent">— Fúnebre</div>
+        <div class="tt" style="margin-top:18px">Bordô,<br/>silêncio.</div>
+      </div>
+      <div class="ds">Coroas, arranjos de despedida. Carvão e bordô, tipografia em romana sóbria. Sem ícones festivos. Mensagem curta, terminação em ponto final.</div>
+      <div class="palette-strip">
+        <span style="background:var(--carvao)"></span>
+        <span style="background:var(--bordo)"></span>
+        <span style="background:var(--dourado)"></span>
+        <span style="background:var(--marfim-2)"></span>
+      </div>
+    </div>
+
+    <div class="app app-cot">
+      <div>
+        <div class="cat accent">— Cotidiano</div>
+        <div class="tt" style="margin-top:18px">Afeto<br/><em>do balcão</em>.</div>
+      </div>
+      <div class="ds">Cestas, café da manhã, presente do meio de semana. Dourado e rosa-pó, tipografia mais solta, copy direta. É a flor que cabe na mesa da cozinha.</div>
+      <div class="palette-strip">
+        <span style="background:var(--dourado)"></span>
+        <span style="background:var(--rosa-po)"></span>
+        <span style="background:var(--bordo)"></span>
+        <span style="background:var(--marfim-2)"></span>
+      </div>
+    </div>
+
+    <div class="app app-dat">
+      <div>
+        <div class="cat accent">— Datas comemorativas</div>
+        <div class="tt" style="margin-top:18px">Carmim<br/>em <em>festa</em>.</div>
+      </div>
+      <div class="ds">Mães, Namorados, Natal. Carmim assume a tela inteira, dourado faz o gesto. A festa entra pela cor — nunca pela tipografia.</div>
+      <div class="palette-strip">
+        <span style="background:var(--carmim)"></span>
+        <span style="background:var(--dourado)"></span>
+        <span style="background:var(--rosa-po)"></span>
+        <span style="background:var(--marfim-2)"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>FSF · Brand Guidelines</span>
+    <span>10 / 10</span>
+  </div>
+</section>
+
+
+<!-- =============================== 11 DON'TS =============================== -->
+<section class="page donts" data-screen-label="11 Donts">
+  <div class="meta">
+    <span>11 · Usos a evitar</span>
+    <span>Don'ts</span>
+  </div>
+
+  <div class="section-label" style="color:var(--carmim);margin-bottom:18px">— Seis travas</div>
+  <h2 class="h2">O que <em>não</em> fazemos.</h2>
+  <div class="sub">A marca é robusta, mas a fronteira existe. Seis erros recorrentes a evitar.</div>
+
+  <div class="donts-grid">
+    <div class="dont">
+      <span class="x">×</span>
+      <div class="demo" style="transform:scaleX(.55);font-family:var(--serif);font-size:36px;color:var(--carmim)">Filomena</div>
+      <div class="cap"><b>01.</b> Não esticar nem comprimir o wordmark. Mantenha sempre a proporção original.</div>
+    </div>
+    <div class="dont" style="background:linear-gradient(135deg,#ff3d6e,#ff8a3d,#ffd93d)">
+      <span class="x">×</span>
+      <div class="demo" style="color:#fff">Carmim</div>
+      <div class="cap" style="color:#fff"><b>02.</b> Sem gradientes vibrantes. O carmim é cor chapada — saturação não substitui caráter.</div>
+    </div>
+    <div class="dont">
+      <span class="x">×</span>
+      <div class="demo" style="font-family:'Impact','Arial Black',sans-serif;color:var(--carmim);letter-spacing:-.02em">FILOMENA</div>
+      <div class="cap"><b>03.</b> Não trocar a serifa por display agressivo, condensed ou bold sem serifa.</div>
+    </div>
+    <div class="dont" style="background:url('assets/bouquet-mixed.png') center/cover">
+      <span class="x">×</span>
+      <div class="demo" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.4)">Filomena</div>
+      <div class="cap" style="background:rgba(255,255,255,.85);padding:8px;border-radius:2px"><b>04.</b> Wordmark sobre foto sem véu carmim. Sempre aplicar fundo sólido ou véu a 80%.</div>
+    </div>
+    <div class="dont">
+      <span class="x">×</span>
+      <div class="demo" style="font-size:18px;color:var(--carmim)">😍🌷💐✨🌸🎉</div>
+      <div class="cap"><b>05.</b> Emoji em comunicação fúnebre, nunca. Em outras categorias, no máximo um, e nunca o de festa.</div>
+    </div>
+    <div class="dont">
+      <span class="x">×</span>
+      <div class="demo" style="font-family:var(--serif);font-style:italic;font-size:24px;color:var(--carmim);text-align:center;line-height:1.3">&ldquo;Surpreenda mamãezinha<br/>com nossa cestinha<br/>especial!&rdquo;</div>
+      <div class="cap"><b>06.</b> Sem diminutivos forçados nem linguagem publicitária genérica. Fale como quem atende.</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>FSF · Brand Guidelines</span>
+    <span>11 / 12</span>
+  </div>
+</section>
+
+
+<!-- =============================== 12 CONTATO =============================== -->
+<section class="page page--carmim contact" data-screen-label="12 Contato">
+  <div class="meta" style="color:var(--dourado)">
+    <span>12 · Assinatura</span>
+    <span>Contato e endereço</span>
+  </div>
+
+  <div class="section-label" style="color:var(--dourado);margin-bottom:18px">— Onde nos encontrar</div>
+  <h1 class="h1" style="color:var(--dourado)">Praia de <em>Botafogo</em>,<br/>406 — Loja 11.</h1>
+
+  <div style="margin-top:64px">
+    <div class="row">
+      <div class="k">Endereço</div>
+      <div class="v">Praia de Botafogo, 406 — Loja 11<br/><em>Botafogo · Rio de Janeiro · CEP 22250-040</em></div>
+    </div>
+    <div class="row">
+      <div class="k">Telefones</div>
+      <div class="v">(21) 2552-9396 · (21) 2553-7446</div>
+    </div>
+    <div class="row">
+      <div class="k">WhatsApp</div>
+      <div class="v">(21) 99452-0613 · (21) 98699-3706</div>
+    </div>
+    <div class="row">
+      <div class="k">E-mail</div>
+      <div class="v"><em>contato.florasantafilomena@gmail.com</em></div>
+    </div>
+    <div class="row">
+      <div class="k">Site</div>
+      <div class="v">florasantafilomena.com.br</div>
+    </div>
+    <div class="row">
+      <div class="k">Instagram · Facebook</div>
+      <div class="v">@flora_santafilomena<br/>/florasantafilomena</div>
+    </div>
+  </div>
+
+  <div class="sig-block">
+    <div class="biglogo">Filomena.</div>
+    <div class="ver">
+      Brand Book v1.0<br/>
+      Maio · 2026<br/>
+      Documento interno
+    </div>
+  </div>
+
+  <div class="foot" style="color:var(--dourado)">
+    <span>FSF · Brand Guidelines</span>
+    <span>12 / 12</span>
+  </div>
+</section>
+
+<script>
+  (async function autoPrint(){
+    try {
+      if (document.fonts && document.fonts.ready) {
+        await document.fonts.ready;
+      }
+      // Wait for all images to load
+      const imgs = Array.from(document.images || []);
+      await Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(res => {
+        img.addEventListener('load', res, { once: true });
+        img.addEventListener('error', res, { once: true });
+      })));
+      setTimeout(() => window.print(), 500);
+    } catch (e) {
+      setTimeout(() => window.print(), 800);
+    }
+  })();
+</script>
+</body>
+</html>
