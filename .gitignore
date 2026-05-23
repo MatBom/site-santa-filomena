@@ -7,10 +7,13 @@ Thumbs.db
 .idea/
 
 # Playwright validation artifacts
+# QA / Playwright artifacts
+.qa-tmp/
 check-video.mjs
 scroll-frames.mjs
 raw-video.mjs
 dims.mjs
+snap-*.mjs
 qa-*.mjs
 check-video.png
 frame-*.png
