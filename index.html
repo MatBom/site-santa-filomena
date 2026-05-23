@@ -29,20 +29,11 @@
   body{color:var(--marfim);font-family:var(--sans);-webkit-font-smoothing:antialiased;scroll-behavior:auto;overflow-x:hidden;background:transparent}
 
   /* ===== VIDEO BACKGROUND =====
-     Vídeo 720x1280 (portrait). Em widescreen mostramos a versão sharp centralizada
-     com object-fit:contain (sem corte) + uma duplicata cover+blur preenchendo as
-     laterais. */
+     Swap dinâmico por viewport: mobile usa portrait (720x1280), desktop usa
+     landscape (1280x720). JS define o src no boot. */
   .bg-stage{position:fixed;inset:0;z-index:-2;background:#0a0807;overflow:hidden}
   .bg-video{
-    position:absolute;inset:0;width:100%;height:100%;
-  }
-  .bg-video.blur{
-    object-fit:cover;
-    filter:blur(48px) brightness(.55) saturate(1.1);
-    transform:scale(1.15);
-  }
-  .bg-video.sharp{
-    object-fit:contain;
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   }
   .bg-overlay{
     position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -196,7 +187,7 @@
   .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(31,27,22,.18)}
   .card .num{
     font-family:var(--mono);font-size:11px;letter-spacing:.26em;
-    color:var(--dourado);font-weight:500;text-transform:uppercase;
+    color:var(--verde);font-weight:500;text-transform:uppercase;
     transition:color .25s ease;
   }
   .card:hover .num{color:var(--carmim)}
@@ -318,7 +309,7 @@
 
   /* mobile: replace fixed-bg scrub with hero-only loop */
   @media (max-width: 768px){
-    .bg-video{position:absolute;height:100vh;top:0}
+    .bg-stage{position:absolute;height:100vh;top:0}
     .bg-overlay{position:absolute;height:100vh;top:0}
     main > section:not(:first-of-type){background:var(--marfim);color:var(--carvao)}
     main > section:not(:first-of-type) h2,
@@ -355,8 +346,7 @@
 
 <!-- ========= VIDEO BACKGROUND ========= -->
 <div class="bg-stage" aria-hidden="true">
-  <video class="bg-video blur"  id="bgVideoBlur"  src="assets/flora-bloom-scrub.mp4" muted playsinline preload="auto"></video>
-  <video class="bg-video sharp" id="bgVideo"      src="assets/flora-bloom-scrub.mp4" muted playsinline preload="auto"></video>
+  <video class="bg-video" id="bgVideo" muted playsinline preload="auto"></video>
 </div>
 <div class="bg-overlay" aria-hidden="true"></div>
 
@@ -542,13 +532,17 @@
 <script>
 (function(){
   const video = document.getElementById('bgVideo');
-  const videoBlur = document.getElementById('bgVideoBlur');
   const preload = document.getElementById('preload');
   const nav = document.getElementById('nav');
   const main = document.getElementById('main');
 
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ====== Pick video source by viewport: portrait on mobile, landscape on desktop ======
+  video.src = isMobile
+    ? 'assets/flora-bloom-scrub.mp4'
+    : 'assets/flora-bloom-desktop-scrub.mp4';
 
   // ====== Preloader: hide once video is ready (or after 2.5s fallback) ======
   let preloadHidden = false;
@@ -599,11 +593,6 @@
     video.loop = true;
     video.autoplay = true;
     video.play().catch(()=>{});
-    if (videoBlur) {
-      videoBlur.loop = true;
-      videoBlur.autoplay = true;
-      videoBlur.play().catch(()=>{});
-    }
     return;
   }
 
@@ -612,11 +601,6 @@
     video.addEventListener('loadedmetadata', () => {
       try { video.currentTime = video.duration - 0.1; } catch(_) {}
     });
-    if (videoBlur) {
-      videoBlur.addEventListener('loadedmetadata', () => {
-        try { videoBlur.currentTime = videoBlur.duration - 0.1; } catch(_) {}
-      });
-    }
     return;
   }
 
@@ -635,9 +619,6 @@
           const t = self.progress * video.duration;
           if (!isNaN(t) && isFinite(t)) {
             try { video.currentTime = t; } catch(_) {}
-            if (videoBlur) {
-              try { videoBlur.currentTime = t; } catch(_) {}
-            }
           }
         }
       });
@@ -652,7 +633,6 @@
 
     // Pause if user explicitly scrolls — prevents auto-play
     video.pause();
-    if (videoBlur) videoBlur.pause();
   }
 })();
 </script>
